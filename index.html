@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Happy 25th Birthday Alda! 🎂✨</title>
+  <meta name="description" content="Spesial ucapan selamat ulang tahun ke-25 untuk Alda tercinta 💙" />
+  <meta name="theme-color" content="#bce0fd" />
+
+  <!-- OpenGraph Meta Tags (WhatsApp / Telegram / Social Preview) -->
+  <meta property="og:title" content="Happy 25th Birthday Alda! 🎂✨" />
+  <meta property="og:description" content="Ada kejutan spesial ulang tahun untuk kamu, buka yuk! 💙" />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Floating Background Elements (Clouds, Doraemon Bells, Stars, Sparkles) -->
+  <div class="sky-background" id="sky-background"></div>
+
+  <!-- Music Controller Floating Pill -->
+  <div class="music-pill" id="music-pill" title="Putar / Hentikan Musik">
+    <button class="music-btn" id="music-btn" aria-label="Toggle Musik">
+      <span class="music-icon" id="music-icon">🎵</span>
+      <span class="music-label" id="music-label">Musik: Off</span>
+      <div class="sound-wave" id="sound-wave">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </button>
+  </div>
+
+  <!-- Top Helper Bar (Preview Mode / Countdown Switch) -->
+  <div class="top-nav">
+    <div class="badge-doraemon">
+      <span class="bell-mini">🔔</span>
+      <span>Spesial Untuk Alda</span>
+    </div>
+    <button class="btn-preview-mode" id="btn-preview-mode" title="Tekan untuk langsung melihat kejutan">
+      ⚡ Buka Kejutan Langsung
+    </button>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 1. COUNTDOWN SECTION (HALAMAN AWAL)        -->
+  <!-- ========================================== -->
+  <section class="section-container active-section" id="section-countdown">
+    <div class="card glass-card hero-card">
+      
+      <!-- Doraemon with Spinning Bamboo Copter SVG -->
+      <div class="doraemon-character-wrap">
+        <div class="bamboo-copter">
+          <div class="copter-pole"></div>
+          <div class="copter-blade"></div>
+        </div>
+        <div class="doraemon-head">
+          <div class="doraemon-face">
+            <div class="d-eye eye-left"><div class="pupil"></div></div>
+            <div class="d-eye eye-right"><div class="pupil"></div></div>
+            <div class="d-nose"><div class="nose-shine"></div></div>
+            <div class="d-whiskers-left">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="d-whiskers-right">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="d-smile"></div>
+          </div>
+          <div class="doraemon-collar">
+            <div class="collar-stripe"></div>
+            <div class="doraemon-bell">
+              <div class="bell-center-line"></div>
+              <div class="bell-hole"></div>
+            </div>
+          </div>
+        </div>
+        <div class="floating-bubble-speech">
+          <span>Menghitung detik menuju hari bahagiamu... ⏳✨</span>
+        </div>
+      </div>
+
+      <!-- Main Title -->
+      <h1 class="main-title">Counting Down To <br><span class="highlight-name">Alda's 25th Birthday</span> 🎉</h1>
+      <p class="subtitle-text">
+        Detik-detik menuju <strong>14 November pukul 00:00</strong>. Tunggu sampai hitungan mundur selesai yaa!
+      </p>
+
+      <!-- Countdown Timer Container -->
+      <div class="countdown-grid" id="countdown-grid">
+        <div class="countdown-box">
+          <span class="count-number" id="days">00</span>
+          <span class="count-label">Hari</span>
+        </div>
+        <div class="countdown-box">
+          <span class="count-number" id="hours">00</span>
+          <span class="count-label">Jam</span>
+        </div>
+        <div class="countdown-box">
+          <span class="count-number" id="minutes">00</span>
+          <span class="count-label">Menit</span>
+        </div>
+        <div class="countdown-box pulse-card">
+          <span class="count-number" id="seconds">00</span>
+          <span class="count-label">Detik</span>
+        </div>
+      </div>
+
+      <!-- Interactive Wait Activity -->
+      <div class="interactive-wait-box">
+        <button class="btn-tap-bell" id="btn-tap-bell">
+          <span class="bell-anim">🔔</span> Ketuk Lonceng Buat Doa Baik
+        </button>
+        <span class="tap-counter-text" id="tap-counter-text">0 doa baik terkirim untuk Alda ✨</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 2. SURPRISE BOOM OVERLAY & ANIMATION       -->
+  <!-- ========================================== -->
+  <div class="boom-overlay" id="boom-overlay">
+    <div class="boom-flash" id="boom-flash"></div>
+    <div class="boom-content">
+      <div class="boom-text-anim">💥 SURPRISE! 💥</div>
+      <div class="boom-sub">HAPPY BIRTHDAY ALDA! 🎉✨</div>
+    </div>
+  </div>
+
+  <!-- Canvas for Confetti & Sparkles -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- ========================================== -->
+  <!-- 3. CELEBRATION & MESSAGE SECTION           -->
+  <!-- ========================================== -->
+  <section class="section-container" id="section-celebration">
+    
+    <!-- Top Celebration Banner -->
+    <div class="celebration-hero">
+      <div class="doraemon-party-flyer">
+        <div class="mini-propeller"></div>
+        <span class="party-hat">🎉</span>
+        <div class="doraemon-mini-head"></div>
+      </div>
+      <h2 class="celebration-title">
+        TADAAAAA! 🎊
+      </h2>
+      <div class="celebration-subtitle">
+        Selamat Ulang Tahun yang ke-25, Aldaaa! 💙🎂✨
+      </div>
+    </div>
+
+    <!-- Letter Card / Kartu Ucapan Spesial -->
+    <div class="card glass-card letter-card">
+      <!-- Envelope Decor Top -->
+      <div class="letter-stamp">
+        <span class="stamp-icon">🔔</span>
+        <span class="stamp-text">Alda 25th</span>
+      </div>
+      <div class="letter-washi-tape"></div>
+
+      <div class="letter-header">
+        <div class="avatar-holder">
+          <div class="doraemon-avatar">
+            <span class="avatar-emoji">🎂</span>
+          </div>
+          <div class="avatar-info">
+            <div class="to-name">Untuk: <strong>Alda Tersayang 🌸</strong></div>
+            <div class="date-tag">14 November • Spesial Usia 25 Tahun</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="letter-body">
+        <p class="greeting-highlight">
+          "TADAAAAA Happy Birthday ya Aldaaa yang ke 25thn, udah bertambah 1 tahun ini, aku doa semoga di umur yang baru ini kehidupan kamu semakin diberkati, masa depan di berkati, sehat" selalu nggk gampang muda sakit, lebih sabar, lebih tenang, kalo cerewet gapapa dilebihin gapapa hahahaha, semoga prosesnya bisa lancar yaa sampai pada waktunya. ✨💙"
+        </p>
+
+        <div class="letter-divider">
+          <span>🌸 🔔 🌸</span>
+        </div>
+
+        <p class="apology-paragraph">
+          Maaf yaa kalo kemarin kemarin sering bikin badmood, sering bikin marah, sering bikin emosi yang kayak kamu bilang dampaknya itu bikin kamu drop. 🥺
+        </p>
+
+        <p class="heartfelt-paragraph">
+          maaf banget yaaa alda, like i said before pengenalan sifat/karakter seseorang itu butuh proses dan butuh waktu. sekali lagi maaf kalo akhir akhir ini bikin kamu emosi nehh...... tapi jangan mudah emosi nanti cepat tua kata orang-orang heheheh... 🙈✨
+        </p>
+
+        <p class="gift-teaser-paragraph">
+          apalagi yaaa..... i want to give u a Gift Birthday but i dont know your location huhuuuu.... so about that... 
+          <br>
+          <span class="scroll-down-accent"><strong>(scroll lagi kebawah 👇)</strong></span>
+        </p>
+      </div>
+
+      <!-- Cute Bouncing Scroll Prompt -->
+      <div class="scroll-indicator" id="scroll-prompt">
+        <a href="#section-cake" class="scroll-link">
+          <span>Ada kue ulang tahun buat kamu di bawah!</span>
+          <div class="bounce-arrow">⬇️</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 4. ONLINE CAKE & CANDLE SECTION            -->
+    <!-- ========================================== -->
+    <div class="cake-container-section" id="section-cake">
+      
+      <div class="cake-header-card">
+        <span class="dorayaki-badge">🍰 Kue Spesial</span>
+        <h3 class="cake-intro-text">"ini dia kue ulang tahun onlen untuk kamu hehehe"</h3>
+        <h2 class="cake-main-heading">First Make A Wish and blow it 🎂✨</h2>
+        <!-- <p class="cake-instruction-sub">
+          Pejamkan mata sejenak, buat permohonan terbaikmu di usia 25 ini, lalu tiup lilinnya!
+        </p> -->
+      </div>
+
+      <!-- Animated Cake Presentation -->
+      <div class="cake-stage">
+        
+        <!-- Smoke Effects (Active when blown) -->
+        <div class="smoke-puff smoke-1" id="smoke-1"></div>
+        <div class="smoke-puff smoke-2" id="smoke-2"></div>
+        <div class="smoke-puff smoke-3" id="smoke-3"></div>
+
+        <!-- The Birthday Cake -->
+        <div class="cake-wrapper" id="cake-wrapper">
+          
+          <!-- Candle 25 -->
+          <div class="candle-cluster">
+            
+            <!-- Number 2 Candle -->
+            <div class="number-candle" id="candle-2">
+              <div class="candle-wick"></div>
+              <div class="flame" id="flame-1">
+                <div class="flame-inner"></div>
+                <div class="flame-glow"></div>
+              </div>
+              <div class="number-body num-2">2</div>
+            </div>
+
+            <!-- Number 5 Candle -->
+            <div class="number-candle" id="candle-5">
+              <div class="candle-wick"></div>
+              <div class="flame" id="flame-2">
+                <div class="flame-inner"></div>
+                <div class="flame-glow"></div>
+              </div>
+              <div class="number-body num-5">5</div>
+            </div>
+
+          </div>
+
+          <!-- Cake Layers -->
+          <div class="cake-tier tier-top">
+            <div class="icing-dripping">
+              <span class="drip drip-1"></span>
+              <span class="drip drip-2"></span>
+              <span class="drip drip-3"></span>
+              <span class="drip drip-4"></span>
+              <span class="drip drip-5"></span>
+            </div>
+            <div class="strawberries">
+              <span class="berry b-1">🍓</span>
+              <span class="berry b-2">🍒</span>
+              <span class="berry b-3">🍓</span>
+            </div>
+            <div class="sprinkles">
+              <span class="sprinkle s1"></span>
+              <span class="sprinkle s2"></span>
+              <span class="sprinkle s3"></span>
+              <span class="sprinkle s4"></span>
+            </div>
+          </div>
+
+          <div class="cake-tier tier-bottom">
+            <div class="cream-decor">
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="cake-ribbon-decor">
+              <div class="bell-center">🔔</div>
+            </div>
+          </div>
+
+          <!-- Cake Plate / Stand -->
+          <div class="cake-plate"></div>
+          <div class="plate-shadow"></div>
+        </div>
+
+        <!-- Blow & Touch Controls Box -->
+        <div class="blow-action-card">
+          
+          <!-- Status Message -->
+          <div class="blow-status-pill" id="blow-status-pill">
+            <span class="status-icon">🕯️</span>
+            <span id="blow-status-text">nanti aktifkan dlu mic baru tiup yaaaa, tekan tombol dibawah</span>
+          </div>
+
+          <!-- Two interaction methods -->
+          <div class="blow-buttons-row">
+            <!-- Mic Blow Trigger -->
+            <button class="btn-action-blow btn-mic" id="btn-mic-blow">
+              <span class="icon-pulse">🎙️</span>
+              <span class="btn-text-wrap">
+                <strong>Aktifkan Tiup Mic</strong>
+                <small>Tiup langsung ke layar/mic HP kamu</small>
+              </span>
+            </button>
+
+            <!-- Touch / Click Trigger -->
+            <button class="btn-action-blow btn-touch" id="btn-touch-blow">
+              <span>👆</span>
+              <span class="btn-text-wrap">
+                <strong>Sentuh / Tekan Lilin</strong>
+                <small>Klik untuk matikan apinya</small>
+              </span>
+            </button>
+          </div>
+
+          <!-- Mic Volume Meter (Visible when mic enabled) -->
+          <div class="mic-meter-box" id="mic-meter-box" style="display: none;">
+            <div class="mic-meter-label">
+              <span>Kekuatan Tiupan:</span>
+              <span id="mic-level-text">Ayo tiup mic kamu yang kuat! 💨</span>
+            </div>
+            <div class="mic-progress-track">
+              <div class="mic-progress-fill" id="mic-progress-fill"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Wish Granted Popup Card (Hidden until blown) -->
+      <div class="wish-granted-card" id="wish-granted-card">
+        <div class="wish-congrats-header">
+          <div class="party-popper-anim">🎉 🎂 ✨</div>
+          <h3>YAAAY! WISH KAMU TERKABUL!</h3>
+        </div>
+        <p class="wish-congrats-body">
+          YEAYYYYYYY Lilin sudah ditiup! 🥳🤍<br>
+          Semoga semua hal baik, kebahagiaan, kesehatan, ketenangan hati, dan rezeki melimpah selalu menyertai langkah Alda di setiap hari. Amin paling serius! 🤲💙
+        </p>
+        <button class="btn-relight" id="btn-relight">
+          🔄 Nyalakan Lilin Lagi
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 5. GIFT & LOCATION SECTION (DORAEMON 4D)   -->
+    <!-- ========================================== -->
+    <div class="card glass-card gift-location-card" id="section-gift">
+      <div class="pocket-top-icon">
+        <div class="doraemon-pocket-graphic">
+          <div class="pocket-rim"></div>
+          <div class="pocket-belly">
+            <span class="pocket-star">✨</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="gift-title">Kantong Ajaib Doraemon 🎒🎁</h3>
+      <p class="gift-desc">
+        <em>"i want to give u a Gift Birthday but i dont know your location huhuuuu.... so about that..."</em>
+      </p>
+
+      <div class="gift-box-interactive" id="gift-box-interactive">
+        <div class="gift-box-wrapper" id="gift-box-wrapper">
+          <div class="gift-lid">
+            <div class="gift-bow">🎀</div>
+          </div>
+          <div class="gift-base">
+            <span class="gift-text-tap">Buka Kado</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Revealed Gift Message / Location Share -->
+      <div class="gift-revealed-content" id="gift-revealed-content" style="display: none;">
+        <div class="revealed-badge">📦 Spesial Delivery Untuk Alda</div>
+        <p class="revealed-text">
+          Biar kadonya beneran bisa nyampe dengan selamat dan nggak nyasar ke rumah Nobita 😆, aku pengen tahu lokasi kamu sekarang supaya aku bisa kirim hadiahnyaaaaa ^^:
+        </p>
+
+        <a 
+          href="https://wa.me/6282260754977?text=Halo!%20Makasih%20banyak%20ya%20buat%20ucapan%20ulang%20tahunnya%20%F0%9F%8E%82%E2%9C%A8%20Ini%20lokasi%20aku%20buat%20kado%20ultahku%20ke-25%3A%20" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn-send-location"
+          id="btn-whatsapp-share"
+        >
+          <span class="wa-icon">💬</span>
+          <span>Kirim Lokasi ke WhatsApp</span>
+        </a>
+
+        <div class="gift-ps-text">
+          (Atau cukup balas chat langsung yaa hehehe 💙)
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Note -->
+    <footer class="birthday-footer">
+      <div class="footer-doraemon-bell">🔔</div>
+      <p>Dibuat dengan segenap doa terbaik & kasih tulus untuk <strong>Alda</strong></p>
+      <p class="footer-sub">14 November • 25th Birthday Special Edition</p>
+    </footer>
+
+  </section>
+
+  <!-- Sweet Toast Notifications -->
+  <div class="toast-popup" id="toast-popup">
+    <span id="toast-message">Pesan doa terkirim! 💙</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
