@@ -83,18 +83,11 @@
   // ============================================================
   function getNextTargetDate() {
     const now = new Date();
-    let year = now.getFullYear();
-    let target = new Date(year, CONFIG.targetMonth, CONFIG.targetDay, CONFIG.targetHour, CONFIG.targetMinute, CONFIG.targetSecond);
-
-    // If current time is past Nov 14 00:00 of this year:
-    // We check if it is still Nov 14 (Birthday day!)
-    const isTodayNov14 = (now.getMonth() === CONFIG.targetMonth && now.getDate() === CONFIG.targetDay);
-    
-    if (now >= target && !isTodayNov14) {
-      // If past Nov 14 completely, for next year
-      // But if user opens it, we respect test/preview mode
-    }
-    return target;
+    const currentYear = now.getFullYear();
+    // Target: 14 November 00:00:00 WIB (UTC+7)
+    // Di zona WIB: tepat jam 00:00 WIB | Di zona WITA: tepat jam 01:00 WITA
+    const targetIso = `${currentYear}-11-14T00:00:00+07:00`;
+    return new Date(targetIso);
   }
 
   function initCountdown() {
